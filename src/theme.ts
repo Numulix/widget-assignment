@@ -7,15 +7,15 @@ export const theme = createTheme({
         },
         background: {
             default: "#f6f7fb",
-        }
+        },
     },
     shape: {
         borderRadius: 10,
     },
     typography: {
-        fontFamily: 'Inter, Roboto, system-ui, sans-serif',
+        fontFamily: "Inter, Roboto, system-ui, sans-serif",
         h6: {
             fontWeight: 700,
-        }
-    }
-})
+        },
+    },
+});

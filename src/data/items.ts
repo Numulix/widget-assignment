@@ -1,7 +1,7 @@
 // Generates an array of plain strings
 // ["Element 1", "Element 2", "Element 3", ...]
 export function generateListItems(count: number): string[] {
-    return Array.from({ length: count }, (_, i) => `Element ${i+1}`);
+    return Array.from({ length: count }, (_, i) => `Element ${i + 1}`);
 }
 
 // From the given assignment, it's assumed that all elements are

@@ -1,6 +1,6 @@
 import { Box, Button, Divider, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { useSelectionEditor } from "../lib/useSelectionEditor";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import { SearchInput } from "./SearchInput";
 import { FilterSelect } from "./FilterSelect";
 import { ItemList } from "./ItemList";
@@ -25,22 +25,24 @@ export function SelectionEditor({ allItems, values, initialSelection, onSave, on
         isSelected,
         isDisabled,
         toggle,
-        remove
+        remove,
     } = useSelectionEditor(allItems, values, initialSelection);
 
     return (
-        <Paper variant="outlined" sx={{ overflow: 'hidden' }}>
+        <Paper variant="outlined" sx={{ overflow: "hidden" }}>
             <Stack
                 direction="row"
-                sx={{ 
-                    px: 2, 
-                    py: 1.5, 
-                    bgcolor: 'grey.100',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                sx={{
+                    px: 2,
+                    py: 1.5,
+                    bgcolor: "grey.100",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                 }}
             >
-                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Select items</Typography>
+                <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                    Select items
+                </Typography>
                 <IconButton size="small" onClick={onCancel} aria-label="Close">
                     <CloseIcon fontSize="small" />
                 </IconButton>
@@ -48,9 +50,9 @@ export function SelectionEditor({ allItems, values, initialSelection, onSave, on
             <Divider />
 
             <Stack
-                direction={{ xs: 'column', sm: 'row' }}
+                direction={{ xs: "column", sm: "row" }}
                 spacing={2}
-                sx={{ p: 2, alignItems: 'center' }}
+                sx={{ p: 2, alignItems: "center" }}
             >
                 <SearchInput value={searchTerm} onChange={setSearchTerm} />
                 <FilterSelect value={threshold} onChange={setThreshold} />
@@ -64,8 +66,14 @@ export function SelectionEditor({ allItems, values, initialSelection, onSave, on
             />
 
             <Box sx={{ p: 2 }}>
-                <Stack direction="row" spacing={1} sx={{ mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <Typography variant="body2" color="text.secondary">Current selected items:</Typography>
+                <Stack
+                    direction="row"
+                    spacing={1}
+                    sx={{ mb: 2, alignItems: "center", flexWrap: "wrap" }}
+                >
+                    <Typography variant="body2" color="text.secondary">
+                        Current selected items:
+                    </Typography>
                     <SelectedChips items={draft} onRemove={remove} />
                 </Stack>
                 <Stack direction="row" spacing={1}>
@@ -78,5 +86,5 @@ export function SelectionEditor({ allItems, values, initialSelection, onSave, on
                 </Stack>
             </Box>
         </Paper>
-    )
+    );
 }

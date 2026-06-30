@@ -27,14 +27,17 @@ export function SelectionWidget() {
                 onRemove={removeCommitted}
             />
             {isEditing && (
-                <SelectionEditor 
+                <SelectionEditor
                     allItems={ALL_ITEMS}
                     values={ITEM_VALUES}
                     initialSelection={selectedItems}
-                    onSave={(draft) => { setSelectedItems(draft); setIsEditing(false) }}
+                    onSave={(draft) => {
+                        setSelectedItems(draft);
+                        setIsEditing(false);
+                    }}
                     onCancel={() => setIsEditing(false)}
                 />
             )}
         </Stack>
-    )
+    );
 }

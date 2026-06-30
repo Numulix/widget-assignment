@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 interface Props {
     value: string;
@@ -20,9 +20,9 @@ export function SearchInput({ value, onChange }: Props) {
                         <InputAdornment position="start">
                             <SearchIcon fontSize="small" />
                         </InputAdornment>
-                    )
-                }
+                    ),
+                },
             }}
         />
-    )
+    );
 }

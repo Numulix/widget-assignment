@@ -17,9 +17,9 @@ export function SelectedSummary({ items, onEdit, onRemove }: Props) {
                 </Typography>
             </Box>
             {items.length > 0 && <SelectedChips items={items} onRemove={onRemove} />}
-            <Button variant="contained" onClick={onEdit} sx={{ alignSelf: 'flex-start' }}>
+            <Button variant="contained" onClick={onEdit} sx={{ alignSelf: "flex-start" }}>
                 Change my choice
             </Button>
         </Stack>
-    )
+    );
 }

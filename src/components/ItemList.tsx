@@ -19,7 +19,14 @@ type RowProps = {
     onToggle: (item: string) => void;
 };
 
-function Row({ index, style, items, isSelected, isDisabled, onToggle }: RowComponentProps<RowProps>) {
+function Row({
+    index,
+    style,
+    items,
+    isSelected,
+    isDisabled,
+    onToggle,
+}: RowComponentProps<RowProps>) {
     const item = items[index];
     return (
         <ItemRow
@@ -35,8 +42,8 @@ function Row({ index, style, items, isSelected, isDisabled, onToggle }: RowCompo
 export function ItemList({ items, isSelected, isDisabled, onToggle }: Props) {
     if (items.length === 0) {
         return (
-            <Box sx={{ height: LIST_HEIGHT, borderTop: 1, borderColor: 'divider' }}>
-                <Typography color="text.secondary" sx={{ p: 3, textAlign: 'center' }}>
+            <Box sx={{ height: LIST_HEIGHT, borderTop: 1, borderColor: "divider" }}>
+                <Typography color="text.secondary" sx={{ p: 3, textAlign: "center" }}>
                     No items match your search.
                 </Typography>
             </Box>
@@ -44,7 +51,7 @@ export function ItemList({ items, isSelected, isDisabled, onToggle }: Props) {
     }
 
     return (
-        <Box sx={{ borderTop: 1, borderColor: 'divider' }}>
+        <Box sx={{ borderTop: 1, borderColor: "divider" }}>
             <List
                 rowComponent={Row}
                 rowCount={items.length}

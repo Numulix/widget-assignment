@@ -4,7 +4,7 @@ export function filterItems(
     items: string[],
     values: Map<string, number>,
     searchTerm: string,
-    threshold: FilterThreshold
+    threshold: FilterThreshold,
 ): string[] {
     const query = searchTerm.trim().toLowerCase();
 

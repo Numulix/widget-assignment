@@ -7,7 +7,7 @@ export const MAX_SELECTION = 3;
 export function useSelectionEditor(
     allItems: string[],
     values: Map<string, number>,
-    initialSelection: string[]
+    initialSelection: string[],
 ) {
     const [draft, setDraft] = useState<string[]>(initialSelection);
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -15,7 +15,7 @@ export function useSelectionEditor(
 
     const visibleItems = useMemo(
         () => filterItems(allItems, values, searchTerm, threshold),
-        [allItems, values, searchTerm, threshold]
+        [allItems, values, searchTerm, threshold],
     );
 
     const isSelected = (item: string) => draft.includes(item);
@@ -34,7 +34,7 @@ export function useSelectionEditor(
 
     const remove = (item: string) => {
         setDraft((current) => current.filter((i) => i !== item));
-    }
+    };
 
     return {
         draft,
@@ -48,5 +48,5 @@ export function useSelectionEditor(
         isFull,
         toggle,
         remove,
-    }
+    };
 }

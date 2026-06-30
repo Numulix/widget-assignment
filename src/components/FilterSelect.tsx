@@ -11,7 +11,7 @@ const OPTIONS: { label: string; value: FilterThreshold }[] = [
     { label: "> 100", value: 100 },
     { label: "> 2500", value: 2500 },
     { label: "> 10000", value: 10000 },
-]
+];
 
 export function FilterSelect({ value, onChange }: Props) {
     return (
@@ -29,5 +29,5 @@ export function FilterSelect({ value, onChange }: Props) {
                 </MenuItem>
             ))}
         </TextField>
-    )
+    );
 }

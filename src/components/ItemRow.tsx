@@ -11,11 +11,23 @@ interface Props {
 
 export function ItemRow({ item, checked, disabled, onToggle, style }: Props) {
     return (
-        <ListItemButton style={style} dense selected={checked} disabled={disabled} onClick={() => onToggle(item)}>
+        <ListItemButton
+            style={style}
+            dense
+            selected={checked}
+            disabled={disabled}
+            onClick={() => onToggle(item)}
+        >
             <ListItemIcon sx={{ minWidth: 40 }}>
-                <Checkbox edge="start" checked={checked} disabled={disabled} tabIndex={-1} disableRipple />
+                <Checkbox
+                    edge="start"
+                    checked={checked}
+                    disabled={disabled}
+                    tabIndex={-1}
+                    disableRipple
+                />
             </ListItemIcon>
             <ListItemText primary={item} />
         </ListItemButton>
-    )
+    );
 }
