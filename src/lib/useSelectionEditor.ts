@@ -1,38 +1,39 @@
 import { useMemo, useState } from "react";
-import type { FilterThreshold, ListItem } from "./types";
+import type { FilterThreshold } from "./types";
 import { filterItems } from "./filterItems";
 
 export const MAX_SELECTION = 3;
 
 export function useSelectionEditor(
-    allItems: ListItem[],
-    initialSelection: ListItem[]
+    allItems: string[],
+    values: Map<string, number>,
+    initialSelection: string[]
 ) {
-    const [draft, setDraft] = useState<ListItem[]>(initialSelection);
+    const [draft, setDraft] = useState<string[]>(initialSelection);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [threshold, setThreshold] = useState<FilterThreshold>(0);
 
     const visibleItems = useMemo(
-        () => filterItems(allItems, searchTerm, threshold),
-        [allItems, searchTerm, threshold]
+        () => filterItems(allItems, values, searchTerm, threshold),
+        [allItems, values, searchTerm, threshold]
     );
 
-    const isSelected = (id: string) => draft.some((item) => item.id === id);
+    const isSelected = (item: string) => draft.includes(item);
     const isFull = draft.length >= MAX_SELECTION;
-    const isDisabled = (id: string) => !isSelected(id) && isFull;
+    const isDisabled = (item: string) => !isSelected(item) && isFull;
 
-    const toggle = (item: ListItem) => {
+    const toggle = (item: string) => {
         setDraft((current) => {
-            if (current.some((i) => i.id === item.id)) {
-                return current.filter((i) => i.id !== item.id);
+            if (current.includes(item)) {
+                return current.filter((i) => i !== item);
             }
             if (current.length >= MAX_SELECTION) return current;
             return [...current, item];
         });
     };
 
-    const remove = (id: string) => {
-        setDraft((current) => current.filter((i) => i.id !== id));
+    const remove = (item: string) => {
+        setDraft((current) => current.filter((i) => i !== item));
     }
 
     return {

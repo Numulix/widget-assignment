@@ -1,9 +1,8 @@
 import { create } from "zustand";
-import type { ListItem } from "../lib/types";
 
 interface SelectionState {
-    selectedItems: ListItem[];
-    setSelectedItems: (items: ListItem[]) => void;
+    selectedItems: string[];
+    setSelectedItems: (items: string[]) => void;
 };
 
 export const useSelectionStore = create<SelectionState>((set) => ({

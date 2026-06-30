@@ -1,36 +1,33 @@
-import type { ListItem } from "./types";
 import { describe, it, expect } from "vitest";
 import { filterItems } from "./filterItems";
+import { buildValueMap } from "../data/items";
+import type { FilterThreshold } from "./types";
 
-const items: ListItem[] = [
-    { id: 'item-1', label: 'Element 1', value: 1 },
-    { id: 'item-50', label: 'Element 50', value: 50 },
-    { id: 'item-150', label: 'Element 150', value: 150 },
-    { id: 'item-3000', label: 'Element 3000', value: 3000 },
-];
+const items: string[] = ['Element 1', 'Element 50', 'Element 150', 'Element 3000'];
+const values = buildValueMap(items);
+
+function filterTest(term: string, threshold: FilterThreshold) {
+    return filterItems(items, values, term, threshold);
+}
 
 describe('filterItems', () => {
     it('returns all items when search is empty and threshold is 0', () => {
-        expect(filterItems(items, '', 0)).toEqual(items);
+        expect(filterTest('', 0)).toEqual(items);
     });
 
     it('filters by case-insensitive substring on the label', () => {
-        const result = filterItems(items, 'element 5', 0);
-        expect(result.map(i => i.id)).toEqual(['item-50']);
+        expect(filterTest('element 5', 0)).toEqual(['Element 50']);
     });
 
     it('filters by numeric threshold', () => {
-        const result = filterItems(items, '', 100);
-        expect(result.map(i => i.value)).toEqual([150, 3000]);
+        expect(filterTest('', 100)).toEqual(['Element 150', 'Element 3000']);
     });
 
     it('combines search and filter (both must match)', () => {
-        const result = filterItems(items, '150', 100);
-        expect(result.map(i => i.id)).toEqual(['item-150']);
+        expect(filterTest('150', 100)).toEqual(['Element 150']);
     });
 
     it('ignores surrounding whitespace in the search term', () => {
-        const result = filterItems(items, '  element 1  ', 0);
-        expect(result.map(i => i.id)).toEqual(['item-1', 'item-150']);
+        expect(filterTest(' element 1 ', 0)).toEqual(['Element 1', 'Element 150']);
     });
 })

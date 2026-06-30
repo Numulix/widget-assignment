@@ -1,5 +1,4 @@
 import { Box, Button, Divider, IconButton, Paper, Stack, Typography } from "@mui/material";
-import type { ListItem } from "../lib/types";
 import { useSelectionEditor } from "../lib/useSelectionEditor";
 import CloseIcon from '@mui/icons-material/Close';
 import { SearchInput } from "./SearchInput";
@@ -8,13 +7,14 @@ import { ItemList } from "./ItemList";
 import { SelectedChips } from "./SelectedChips";
 
 interface Props {
-    allItems: ListItem[];
-    initialSelection: ListItem[];
-    onSave: (items: ListItem[]) => void;
+    allItems: string[];
+    values: Map<string, number>;
+    initialSelection: string[];
+    onSave: (items: string[]) => void;
     onCancel: () => void;
 }
 
-export function SelectionEditor({ allItems, initialSelection, onSave, onCancel }: Props) {
+export function SelectionEditor({ allItems, values, initialSelection, onSave, onCancel }: Props) {
     const {
         draft,
         searchTerm,
@@ -26,7 +26,7 @@ export function SelectionEditor({ allItems, initialSelection, onSave, onCancel }
         isDisabled,
         toggle,
         remove
-    } = useSelectionEditor(allItems, initialSelection);
+    } = useSelectionEditor(allItems, values, initialSelection);
 
     return (
         <Paper variant="outlined" sx={{ overflow: 'hidden' }}>

@@ -1,23 +1,22 @@
 import { Box, Typography } from "@mui/material";
 import { List, type RowComponentProps } from "react-window";
-import type { ListItem } from "../lib/types";
 import { ItemRow } from "./ItemRow";
 
 interface Props {
-    items: ListItem[];
-    isSelected: (id: string) => boolean;
-    isDisabled: (id: string) => boolean;
-    onToggle: (item: ListItem) => void;
+    items: string[];
+    isSelected: (item: string) => boolean;
+    isDisabled: (item: string) => boolean;
+    onToggle: (item: string) => void;
 }
 
 const ROW_HEIGHT = 48;
 const LIST_HEIGHT = 340;
 
 type RowProps = {
-    items: ListItem[];
+    items: string[];
     isSelected: (id: string) => boolean;
     isDisabled: (id: string) => boolean;
-    onToggle: (item: ListItem) => void;
+    onToggle: (item: string) => void;
 };
 
 function Row({ index, style, items, isSelected, isDisabled, onToggle }: RowComponentProps<RowProps>) {
@@ -26,8 +25,8 @@ function Row({ index, style, items, isSelected, isDisabled, onToggle }: RowCompo
         <ItemRow
             style={style}
             item={item}
-            checked={isSelected(item.id)}
-            disabled={isDisabled(item.id)}
+            checked={isSelected(item)}
+            disabled={isDisabled(item)}
             onToggle={onToggle}
         />
     );

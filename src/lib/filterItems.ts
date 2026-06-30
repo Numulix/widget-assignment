@@ -1,15 +1,16 @@
-import type { ListItem, FilterThreshold } from "./types";
+import type { FilterThreshold } from "./types";
 
 export function filterItems(
-    items: ListItem[],
+    items: string[],
+    values: Map<string, number>,
     searchTerm: string,
     threshold: FilterThreshold
-): ListItem[] {
+): string[] {
     const query = searchTerm.trim().toLowerCase();
 
     return items.filter((item) => {
-        const matchesSearchTerm = item.label.toLowerCase().includes(query);
-        const meetsThreshold = item.value > threshold;
-        return matchesSearchTerm && meetsThreshold;
-    })
+        const matchesSearch = item.toLowerCase().includes(query);
+        const meetsThreshold = values.get(item)! > threshold;
+        return matchesSearch && meetsThreshold;
+    });
 }

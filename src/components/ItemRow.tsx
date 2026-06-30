@@ -1,12 +1,11 @@
 import { Checkbox, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import type { CSSProperties } from "react";
-import type { ListItem } from "../lib/types";
 
 interface Props {
-    item: ListItem;
+    item: string;
     checked: boolean;
     disabled: boolean;
-    onToggle: (item: ListItem) => void;
+    onToggle: (item: string) => void;
     style?: CSSProperties;
 }
 
@@ -16,7 +15,7 @@ export function ItemRow({ item, checked, disabled, onToggle, style }: Props) {
             <ListItemIcon sx={{ minWidth: 40 }}>
                 <Checkbox edge="start" checked={checked} disabled={disabled} tabIndex={-1} disableRipple />
             </ListItemIcon>
-            <ListItemText primary={item.label} />
+            <ListItemText primary={item} />
         </ListItemButton>
     )
 }

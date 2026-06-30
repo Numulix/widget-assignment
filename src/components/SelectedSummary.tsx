@@ -1,9 +1,8 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import type { ListItem } from "../lib/types";
 import { SelectedChips } from "./SelectedChips";
 
 interface Props {
-    items: ListItem[];
+    items: string[];
     onEdit: () => void;
     onRemove: (id: string) => void;
 }
